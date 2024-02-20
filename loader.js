@@ -77,7 +77,13 @@ function init_honoka(file, android, newDomain) {
     }
     window.Module = {
         noInitialRun: true,
-        onRuntimeInitialized: onloaded,
+        onRuntimeInitialized: async function() {
+            try {
+                await onloaded();
+            } catch(e) {
+                document.getElementById("status").innerText = "It didnt work. Are your files/options invalid?";
+            }
+        },
         arguments: [],
         preRun: [],
         postRun: [],
