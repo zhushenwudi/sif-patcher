@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://rawcdn.githack.com/Stuk/jszip/master/dist/jszip.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+        <script src="loader.js"></script>
+    </head>
+    <body>
+        <h3>Patch sif file in the browser</h3>
+        <br>
+        <fieldset>
+            <legend>Select input file:</legend>
+            <p>If no file is selected, it will be downloaded automatically (recommended).</p>
+            <input type="file" id="sifgamefile">
+            <br><br>
+            Server URL: <input id="serverurl" type="text" value="http://localhost:51376" autocomplete="off"><br><br>
+            <input type="radio" id="apk" name="format" value="apk" checked><label for="apk">Android</label>
+            <input type="radio" id="ipa" name="format" value="ipa"><label for="ipa">iOS</label>
+        </fieldset>
+        <br><br><br>
+        <button onclick="load(event)">Patch</button>
+        <script>
+            function load(e) {
+                e.target.remove()
+                console.log("load");
+                init_honoka(document.getElementById("sifgamefile").files[0], document.getElementById("apk").checked, document.getElementById("serverurl").value);
+            }
+        </script>
+        <p id="status"></p>
+    </body>
+</html>
