@@ -69,7 +69,7 @@ function init_honoka(file, android, newDomain) {
         a.download = "lovelive."+ext;
         document.body.appendChild(a);
         update_status("Done!");
-        if (android && !sign) {
+        if (android) {
             const p = document.createElement("p");
             p.innerHTML = "Package is not signed. It will not install. Sign it with the command `apksigner sign -ks sifkey.keystore lovelive.apk`. Make sure to download <a href=\"https://codeberg.org/arina999999997/nozomi/raw/branch/master/sifkey.keystore\">this keystore</a>.";
             document.body.appendChild(p);
