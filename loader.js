@@ -63,6 +63,13 @@ function init_honoka(file, android, newDomain) {
         let finalized = await zip.generateAsync({type: "uint8array"});
         update_status("Finalizing");
         const downloadUrl = URL.createObjectURL(new Blob([finalized], {type: type}));
+        const b = document.createElement("a");
+        b.href = URL.createObjectURL(new Blob([new_server_info], {type: "application/json"}))
+        b.innerText = "Download patched server_info.json";
+        b.download = "server_info.json";
+        document.body.appendChild(b);
+        
+        
         const a = document.createElement("a");
         a.href = downloadUrl;
         a.innerText = "Download";
@@ -71,7 +78,7 @@ function init_honoka(file, android, newDomain) {
         update_status("Done!");
         if (android) {
             const p = document.createElement("p");
-            p.innerHTML = "Package is not signed. It will not install. Sign it with the command `apksigner sign -ks sifkey.keystore lovelive.apk`. Make sure to download <a href=\"https://codeberg.org/arina999999997/nozomi/raw/branch/master/sifkey.keystore\">this keystore</a>.";
+            p.innerHTML = "Package is not signed. Using <a href=\"https://github.com/patrickfav/uber-apk-signer/releases\">uber-apk-signer</a>, sign it with the command `java -jar uber-apk-signer-<version>.jar lovelive.apk`.";
             document.body.appendChild(p);
         }
     }
