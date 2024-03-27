@@ -69,6 +69,8 @@ function init_honoka(file, android, newDomain) {
         b.download = "server_info.json";
         document.body.appendChild(b);
         
+        document.body.appendChild(document.createElement("br"));
+        document.body.appendChild(document.createElement("br"));
         
         const a = document.createElement("a");
         a.href = downloadUrl;
