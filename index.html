@@ -15,17 +15,71 @@
             <input type="file" id="sifgamefile">
             <br><br>
             Server URL: <input id="serverurl" type="text" value="http://localhost:51376" autocomplete="off"><br><br>
-            <input type="radio" id="apk" name="format" value="apk" checked><label for="apk">Android</label>
-            <input type="radio" id="ipa" name="format" value="ipa"><label for="ipa">iOS</label>
+            <input type="radio" id="apk" name="format" value="apk" onchange="clickstuff(event)" checked><label for="apk">Android</label>
+            <input type="radio" id="ipa" name="format" value="ipa" onchange="clickstuff(event)"><label for="ipa">iOS</label>
+            <div id="patches">
+                <div id="patches-android"></div>
+                <div id="patches-ios"></div>
+            </div>
         </fieldset>
         <br><br><br>
         <button onclick="load(event)">Patch</button>
         <script>
-            function load(e) {
-                e.target.remove()
-                console.log("load");
-                init_honoka(document.getElementById("sifgamefile").files[0], document.getElementById("apk").checked, document.getElementById("serverurl").value);
+            function clickstuff(e) {
+                if (document.getElementById("apk").checked) {
+                    document.getElementById("patches-android").style.display = "";
+                    document.getElementById("patches-ios").style.display = "none";
+                } else {
+                    document.getElementById("patches-android").style.display = "none";
+                    document.getElementById("patches-ios").style.display = "";
+                }
             }
+            let patches;
+            function load(e) {
+                let android = document.getElementById("apk").checked;
+                e.target.remove();
+                console.log("Patch start");
+                for (let i=0; i<patches.length; i++) {
+                    let patch = patches[i];
+                    if (android) {
+                        patches[i].checked = patch.android ? document.getElementById(patch.id + "-android").checked : false;
+                    } else {
+                        patches[i].checked = patch.ios ? document.getElementById(patch.id + "-ios").checked : false;
+                    }
+                }
+                init_honoka(document.getElementById("sifgamefile").files[0], android, document.getElementById("serverurl").value, patches);
+            }
+            (async () => {
+                patches = JSON.parse(await (await fetch("patches.json")).text());
+                patches.forEach(patch => {
+                    let input = document.createElement("input");
+                    input.type = "checkbox";
+                    input.checked = patch.checked;
+
+                    let label = document.createElement("label");
+                    label.innerText = patch.description;
+
+                    if (patch.android) {
+                        let id = patch.id + "-android";
+                        input.id = id;
+                        input.value = id;
+                        label.for = id;
+                        document.getElementById("patches-android").appendChild(document.createElement("br"));
+                        document.getElementById("patches-android").appendChild(input);
+                        document.getElementById("patches-android").appendChild(label);
+                    }
+                    if (patch.ios) {
+                        let id = patch.id + "-ios";
+                        input.id = id;
+                        input.value = id;
+                        label.for = id;
+                        document.getElementById("patches-ios").appendChild(document.createElement("br"));
+                        document.getElementById("patches-ios").appendChild(input);
+                        document.getElementById("patches-ios").appendChild(label);
+                    }
+                })
+            })();
+            addEventListener("DOMContentLoaded", clickstuff);
         </script>
         <p id="status"></p>
     </body>

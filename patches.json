@@ -1,0 +1,49 @@
+[
+    {
+        "id": "english",
+        "description": "Force the language to english",
+        "android": false,
+        "ios": true,
+        "checked": true,
+        "files": [
+            {
+                "path": "patches/english/language.lua",
+                "outpath": "common/language.lua"
+            }
+        ]
+    },
+    {
+        "id": "enable_serial_code",
+        "description": "Enable serial code in settings menu",
+        "android": false,
+        "ios": true,
+        "checked": true,
+        "files": [
+            {
+                "path": "patches/serial_code/model.lua",
+                "outpath": "m_menu/model.lua"
+            }
+        ]
+    },
+    {
+        "id": "restore_title_screen_song",
+        "description": "Enable the title screen music",
+        "android": false,
+        "ios": true,
+        "checked": true,
+        "files": [
+            {
+                "path": "patches/restore_title_screen_song/assets/sound/login/startup_aq_1.mp3",
+                "outpath": "assets/sound/login/startup_aq_1.mp3"
+            },
+            {
+                "path": "patches/restore_title_screen_song/assets/sound/login/startup_mu_1.mp3",
+                "outpath": "assets/sound/login/startup_mu_1.mp3"
+            },
+            {
+                "path": "patches/restore_title_screen_song/m_login/start.lua",
+                "outpath": "m_login/start.lua"
+            }
+        ]
+    }
+]
