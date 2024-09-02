@@ -18,7 +18,7 @@ async function patch(file, android, newDomain, patches) {
     await zip.loadAsync(file);
     update_status("Getting current config");
 
-    let basePath = android ? "" : "Payload/LoveLive.app/ProjectResources/";
+    let basePath = android ? "" : "Payload/LoveLive.app/";
     let server_file;
     if (android) {
         let server_info = await zip.file("assets/AppAssets.zip").async("arraybuffer");

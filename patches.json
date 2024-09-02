@@ -8,7 +8,7 @@
         "files": [
             {
                 "path": "patches/english/language.lua",
-                "outpath": "common/language.lua"
+                "outpath": "ProjectResources/common/language.lua"
             }
         ]
     },
@@ -21,7 +21,7 @@
         "files": [
             {
                 "path": "patches/serial_code/model.lua",
-                "outpath": "m_menu/model.lua"
+                "outpath": "ProjectResources/m_menu/model.lua"
             }
         ]
     },
@@ -34,15 +34,40 @@
         "files": [
             {
                 "path": "patches/restore_title_screen_song/assets/sound/login/startup_aq_1.mp3",
-                "outpath": "assets/sound/login/startup_aq_1.mp3"
+                "outpath": "ProjectResources/assets/sound/login/startup_aq_1.mp3"
             },
             {
                 "path": "patches/restore_title_screen_song/assets/sound/login/startup_mu_1.mp3",
-                "outpath": "assets/sound/login/startup_mu_1.mp3"
+                "outpath": "ProjectResources/assets/sound/login/startup_mu_1.mp3"
             },
             {
                 "path": "patches/restore_title_screen_song/m_login/start.lua",
-                "outpath": "m_login/start.lua"
+                "outpath": "ProjectResources/m_login/start.lua"
+            }
+        ]
+    },
+    {
+        "id": "32_bit_ios",
+        "description": "Use 32 bit binary (iOS 10 and older)",
+        "android": false,
+        "ios": true,
+        "checked": false,
+        "files": [
+            {
+                "path": "patches/32_bit_ios/Info.plist",
+                "outpath": "Info.plist"
+            },
+            {
+                "path": "patches/32_bit_ios/LoveLive",
+                "outpath": "LoveLive"
+            },
+            {
+                "path": "patches/32_bit_ios/PaymentConfig.xcconfig",
+                "outpath": "PaymentConfig.xcconfig"
+            },
+            {
+                "path": "patches/32_bit_ios/ProductConfig.xcconfig",
+                "outpath": "ProductConfig.xcconfig"
             }
         ]
     }

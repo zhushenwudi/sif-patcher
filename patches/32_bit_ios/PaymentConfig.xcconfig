@@ -1,0 +1,72 @@
+//
+//  PaymentConfig.xcconfig
+//  LoveliveProduct
+//
+//  Created by xu-x on 2019/04/22.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+// Bundle
+PRODUCT_BUNDLE_IDENTIFIER = jp.klab.lovelive-en
+PRODUCT_NAME = LoveLive
+
+// Provisioning
+PROVISIONING_PROFILE_SPECIFIER = Lovelive EN Dev
+PROVISIONING_PROFILE = 9f7bc955-4271-4098-a13d-5c0007a6fcc1
+PROVISIONING_PROFILE[sdk=iphoneos*] = 9f7bc955-4271-4098-a13d-5c0007a6fcc1
+DEVELOPMENT_TEAM = PH7T7DHD79   // KLab Inc.
+CODE_SIGN_IDENTITY = iPhone Developer: asato iijima (RQ45AK3JJ5)
+CODE_SIGN_IDENTITY[sdk=iphoneos*] = iPhone Developer: asato iijima (RQ45AK3JJ5)
+CODE_SIGN_ENTITLEMENTS = LoveliveProduct/LoveliveProduct.entitlements
+
+// Build
+SDKROOT = iphoneos
+MACH_O_TYPE = mh_execute
+ONLY_ACTIVE_ARCH = NO
+TARGETED_DEVICE_FAMILY = 1,2
+IPHONEOS_DEPLOYMENT_TARGET = 9.0
+VALIDATE_PRODUCT = YES
+ENABLE_BITCODE = NO
+GENERATE_PKGINFO_FILE = YES
+WRAPPER_EXTENSION = app
+ALWAYS_SEARCH_USER_PATHS = NO
+GCC_C_LANGUAGE_STANDARD = gnu99
+ENABLE_STRICT_OBJC_MSGSEND = YES
+CLANG_WARN_EMPTY_BODY = YES
+CLANG_WARN_BOOL_CONVERSION = YES
+CLANG_WARN_CONSTANT_CONVERSION = YES
+GCC_WARN_64_TO_32_BIT_CONVERSION = YES
+CLANG_WARN_ENUM_CONVERSION = YES
+CLANG_WARN_INT_CONVERSION = YES
+GCC_WARN_ABOUT_RETURN_TYPE = YES
+GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES
+GCC_WARN_UNINITIALIZED_AUTOS = YES
+CLANG_WARN_UNREACHABLE_CODE = YES
+GCC_WARN_UNUSED_FUNCTION = YES
+GCC_WARN_UNUSED_VARIABLE = YES
+CLANG_WARN__DUPLICATE_METHOD_MATCH = YES
+GCC_WARN_UNDECLARED_SELECTOR = YES
+
+//GCC_VERSION = com.apple.compilers.llvm.clang.1_0
+GCC_PRECOMPILE_PREFIX_HEADER = YES
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) OPENGL2 FT2_BUILD_LIBRARY ONLY_C PNG_ARM_NEON_OPT=0 SUBTHREAD_UNZIP=1 DEBUG_ASSERT_OFF USE_EXTERNAL_SDK DEBUG_PRINT_OFF SEND_APPSFLYER_EVENT USING_RECORD_LUA_PATH USE_LUA_HASH_CHECK GAME_LOVE_LIVE_GL
+OTHER_CFLAGS = -DNS_BLOCK_ASSERTIONS=1
+OTHER_LDFLAGS = -ObjC
+GCC_OPTIMIZATION_LEVEL = s
+
+// Debug Symbols
+DEPLOYMENT_POSTPROCESSING = NO  // "NO" means contained something like debug-info
+GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+COPY_PHASE_STRIP = YES      // DO strip debug symbols
+
+// Path
+INSTALL_PATH = $(LOCAL_APPS_DIR)
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon
+INFOPLIST_FILE = LoveliveProduct/LoveliveProduct-Info.plist
+GCC_PREFIX_HEADER = Resources/Lovelive-Prefix.pch
+
+HEADER_SEARCH_PATHS = "$(SRCROOT)/../../include" "$(SRCROOT)/../../../../Engine/porting/iOS/libfreetype2/include" "$(SRCROOT)/../../../../Engine/porting/iOS/Chipmunk2D/include" "$(SRCROOT)/../../../../Engine/libs/spine-c/include"
+USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../../Extensions/SmartBeat/porting/iOS" "$(SRCROOT)/../../../../Extensions/Firebase/porting/iOS" "$(SRCROOT)/../../../../Extensions/AppsFlyer/porting/iOS" 
+LIBRARY_SEARCH_PATHS = $(inherited) $(SRCROOT) "$(SRCROOT)/ExternalSDK" "$(SRCROOT)/../../../../Engine/porting/iOS/curl/ios-dev/lib" "$(SRCROOT)/../../../../Engine/porting/iOS/libfreetype2" "$(SRCROOT)/../../../../Engine/porting/iOS/Chipmunk2D" 
+FRAMEWORK_SEARCH_PATHS = $(inherited) $(SRCROOT) "$(SRCROOT)/../../" "$(SRCROOT)/../../../../Extensions/SmartBeat/porting/iOS/Frameworks" "$(SRCROOT)/../../../../Extensions/Firebase/porting/iOS/Frameworks" "$(SRCROOT)/../../../../Extensions/AppsFlyer/porting/iOS/Frameworks" 
