@@ -9,7 +9,7 @@ async function patch(file, android, newDomain, patches) {
     if (!file) {
         console.log("downloading");
         update_status("Downloading...");
-        file = await (await fetch("https://ethanthesleepy.one/public/lovelive/lovelive-community." + (android ? "apk" : "ipa"))).blob();
+        file = await (await fetch("https://ethanthesleepy.one/public/lovelive/sif/lovelive-community." + (android ? "apk" : "ipa"))).blob();
         console.log("downloaded");
     }
     console.log("loaded");
