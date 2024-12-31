@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <script src="https://rawcdn.githack.com/Stuk/jszip/master/dist/jszip.js"></script>
+        <script src="jszip.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
         <script src="loader.js"></script>
     </head>
     <body>
-        <h3>Patch sif file in the browser</h3>
+        <h3>SIF1服务器修补程序</h3>
         <br>
         <fieldset>
-            <legend>Select input file:</legend>
-            <p>If no file is selected, it will be downloaded automatically (recommended).</p>
-            <input type="file" id="sifgamefile">
-            <br><br>
-            Server URL: <input id="serverurl" type="text" value="http://localhost:51376" autocomplete="off"><br><br>
+            服务器 URL：<input id="serverurl" type="text" value="https://sif.zhushenwudi.top" autocomplete="off"><br><br>
             <input type="radio" id="apk" name="format" value="apk" onchange="clickstuff(event)" checked><label for="apk">Android</label>
             <input type="radio" id="ipa" name="format" value="ipa" onchange="clickstuff(event)"><label for="ipa">iOS</label>
             <div id="patches">
@@ -23,7 +20,7 @@
             </div>
         </fieldset>
         <br><br><br>
-        <button onclick="load(event)">Patch</button>
+        <button onclick="load(event)">开始修补</button>
         <script>
             function clickstuff(e) {
                 if (document.getElementById("apk").checked) {
@@ -47,7 +44,7 @@
                         patches[i].checked = patch.ios ? document.getElementById(patch.id + "-ios").checked : false;
                     }
                 }
-                init_honoka(document.getElementById("sifgamefile").files[0], android, document.getElementById("serverurl").value, patches);
+                init_honoka(android, document.getElementById("serverurl").value, patches);
             }
             (async () => {
                 patches = JSON.parse(await (await fetch("patches.json")).text());
